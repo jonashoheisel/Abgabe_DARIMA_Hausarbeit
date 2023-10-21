@@ -1,0 +1,105 @@
+---
+title: "Distributed ARIMA - Implementation with Pyspark"
+
+abstract: "The following paper contains a brief introduction to ARIMA models and the elaboration of a DARIMA model based on the paper of Wang et. al. Distributed ARIMA models for ultra-long time series. The goal of this work is an implementation similar to the above mentioned authors with the framework Pyspark. The paper is written in the module Data Analysis in Big-Data and aims at highlighting the advantages of distributed computing."
+
+keywords: "DARIMA, Time-Series, Distributed computing, Forecasting"
+
+course: Datenanalyse in Big Data (Prof. Dr. Buchwitz)
+supervisor: Prof. Dr. Buchwitz
+city: Meschede
+
+# List of Authors
+author:
+- familyname: Hoheisel
+  othernames: Jonas
+  address: "MatNr: 30321814"
+  qualifications: "Data Science (2. Semester)"
+  email: jonashoheisel45@googlemail.com
+  correspondingauthor: true
+  
+
+
+# Language Options
+german: false # German Dummy Text
+lang: en-gb   # Text Language: en-gb, en-us, de-de
+
+# Indexes
+toc: true     # Table of Contents
+lot: false    # List of Tables
+lof: false    # List of Figures
+
+# Output Options
+bibliography: references.bib
+biblio-style: authoryear-comp
+blind: false
+cover: true
+checklist: true
+output:
+  fhswf::seminarpaper:
+    fig_caption: yes
+    fig_height: 5
+    fig_width: 8
+    keep_tex: no
+    number_sections: yes
+    citation_package: biblatex
+knit: fhswf::render_seminarpaper
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=FALSE, messages=FALSE, warning=FALSE, 
+                      attr.source='.numberLines', singlespacing = TRUE)
+fhswf::fhswf_hooks()
+
+# Load Packages
+library(fhswf)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+```
+
+# Abstract
+# Introduction
+# ARIMA and distributed computing
+# Map
+# Reduce
+# Implementation Google Cloud
+# Forecast
+## Point forecast
+## Prediction intervals
+# Evaluation
+Evaluating the accuracy and reliability of forecasting models is a critical aspect of decision making in various fields varrieng from finance, engineering to epdemiology. Two commonly used metrics for assesing forecast performance are the Mean absolute Scaled Error (MASE) and the Mean Scaled Interval Score (MSIS). These metrics allow to evaluate the quality of forecasts and to compare it with other models by a uniticized value.
+
+On the one hand, the MASE provides a measure of forecast that is robust to the scale and distribution of the data, making it applicable for comparing forecasts across different contexts. On the ohter hand, the MSIS assesses the quality of prediction intervals, quantifying the coverage of uncertainty inherent in forecasts. Combined, both values MASE and MSIS, they contribute to a comprehensive evaluation of point forecasts and prediction intervals.
+
+In the following both values and equations are briefly introduced and applied to the determined forecasts based on the Nemassboost dataset. The goal is to evaluate the quality of the solution in comparison to the paper of Wang et. al. (@Wang2022).
+
+## MASE - Mean absolute scaled error
+In evaluating the accuracy of point forecasts, the mean absolute scaled error (MASE) can be chosen as metric. The error measure is first introduced by Hyndman and Köhler in 2006  20. 
+
+\begin{equation} MASE = \frac{\frac{1}{H}\ \ \sum_{t=T+1}^{T+H}{\ \ \left|y_t-{\hat{y}}_{t|T}\right|}}{\frac{1}{T-m}\ \sum_{t=m+1}^{T}{\ \ \left|y_t-y_{t-m}\right|}} \end{equation}
+
+
+
+## MSIS - Mean scaled intervals core
+
+\begin{equation} 
+MSIS = \frac{\frac{1}{H}\sum_{t=T+1}^{T+H}(U_{t|T}-L_{t|T}) + \frac{2}{\alpha}(L_{t|T}-y_t) \mathbf{1}\{y_t<L_{t|T}\} + \frac{2}{\alpha}(y_t - U_{t|T}) \mathbf{1}\{y_t > U_{t|T}\}}{\frac{1}{T-m}\sum_{t=m+1}^T |y_t - y_{t-m}|}
+\end{equation}
+
+
+## performance - Pyspark (Laufzeit)
+# Discussion
+# Summary
+
+
+\newpage
+# Appendix 
+
+# Technical Appendix {-}
+
+```{r, echo = TRUE}
+Sys.time()
+sessionInfo()
+```
+
